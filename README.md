@@ -1,25 +1,23 @@
-# README
+テーマを選んだ理由
+　地方にずっと住んでいて、当たり前だと思っていたことが全然知られていないことがあり、ぜひ知ってほしいと思いました。
+　また、旅行でいろいろなところへ行ってみたいという夢があり、旅行した時にその地元の人がおすすめするスポットを巡ってみたいと思い、このテーマにしました。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+ターゲットユーザ
+　旅行をしてみたいと思ったことのある人
 
-Things you may want to cover:
+主な利用シーン
+　旅行をするきっかけや旅行気分を味わいたいとき、地元の情報を知ってほしいと思った時
 
-* Ruby version
+## 設計書
+ER図：https://app.diagrams.net/#G1T4qctN7uQ-ds2ZZg973UvMVjZiV8Hm8z
 
-* System dependencies
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# local_love
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
