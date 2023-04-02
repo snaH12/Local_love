@@ -36,6 +36,7 @@
 
 ## 設計書
 [フレームワーク.zip](https://github.com/snaH12/local_love/files/11131643/default.zip)
+ER図：https://app.diagrams.net/#G1T4qctN7uQ-ds2ZZg973UvMVjZiV8Hm8z
 
 
 ## 開発環境
