@@ -35,6 +35,7 @@
 　旅行をするきっかけや旅行気分を味わいたい時や、地元の情報を知ってほしいと思った時
 
 ## 設計書
+[フレームワーク.zip](https://github.com/snaH12/local_love/files/11131643/default.zip)
 
 
 ## 開発環境
