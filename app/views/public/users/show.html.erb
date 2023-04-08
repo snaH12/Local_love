@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row no-gutters">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto" style="margin-top: 50px;">
+        <h2>マイページ</h2>
+        <diV class="d-flex">
+            <%= image_tag @user.get_profile_image(100,100) %>
+        <div class="font-weight-bold mb-3" style="margin-left: 50px;">    
+        <table class="table table-bordered border-primary">
+            <tr>
+                <td class="table-active">名前</td>
+                <td>
+                    <%= @user.name %>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-active">出身県（任意）</td>
+                <td>
+                    <%= @user.birthplace %>
+                </td>
+            </tr>
+            <tr>
+                <td class="table-active">紹介文</td>
+                <td>
+                     <%= @user.introduction %>
+                </td>
+            </tr>
+        </table>
+        <div class="mt-10 offset-md-8">
+            <% if @user.id == current_user.id %>
+            <%= link_to "編集する",  edit_user_path(@user), class: 'btn btn-success' %>
+            <% end %>
+        </div>
+        </div>
+        </diV>
+    </div>
+  </div>
+</div>        
+

@@ -1,6 +1,30 @@
 # frozen_string_literal: true
 
 class Public::RegistrationsController < Devise::RegistrationsController
+  
+  before_action :ensure_user, only: [:edit,:update]
+  
+  
+  def after_sign_in_path_for(resource)
+    posts_path
+  end
+  def after_sign_out_path_for(resource)
+    root_path
+  end
+  
+  private
+
+  def user_params
+    params.require(:user).permit(:name,:email, :introduction, :profile_image, :birthplace)
+  end
+
+  def ensure_user
+    @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to user_path(current_user)
+    end
+  end
+  
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 

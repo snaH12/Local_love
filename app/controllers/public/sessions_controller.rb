@@ -1,6 +1,29 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
+  
+  before_action :ensure_user, only: [:edit,:update]
+  
+  
+  def after_sign_in_path_for(resource)
+    posts_path
+  end
+  def after_sign_out_path_for(resource)
+    root_path
+  end
+  
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :introduction, :profile_image, :birthplace)
+  end
+
+  def ensure_user
+    @user = User.find(params[:id])
+    unless @user == current_user
+      redirect_to user_path(current_user)
+    end
+  end
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

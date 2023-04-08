@@ -1,0 +1,10 @@
+<h2>投稿編集画面</h2>
+
+  		<%= render 'layouts/errors', obj: @post %>
+  		<%= render 'form', book: @book %>
+  		<%= link_to 'Show', @book, class: "book_#{@book.id}" %> |
+  		<%= link_to 'Back', books_path, class: "back" %>
+  </div>
+</div>
+<h1>Public::Posts#edit</h1>
+<p>Find me in app/views/public/posts/edit.html.erb</p>
