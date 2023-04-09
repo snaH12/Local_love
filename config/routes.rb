@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   scope module: :public do
     resources :users
     resources :regions,only: [:index,:show]
-    resources :posts
+    resources :posts do
+      resource :favorites, only: [:create, :destroy]
+    end
   end
   
   

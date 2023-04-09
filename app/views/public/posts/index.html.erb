@@ -11,7 +11,9 @@
             <p class="mb-2"><%= post.title%></p>
             <% end %>
             <p class="mb-2"><%= post.region.name %></p>
-            <p class="mb-2"><%= post.user.name %></p>
+            <div id=<%="favorite-box"+ post.id.to_s %>>
+              <p class="mb-2"><%= render 'public/favorites/favorite', post: post %></p>
+            </div>
           </div>
         <% end %>
       </div>
