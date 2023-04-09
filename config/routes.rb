@@ -6,12 +6,16 @@ Rails.application.routes.draw do
    registrations: "public/registrations",
    sessions: 'public/sessions'
  }
+ devise_scope :user do
+    post 'guests/guest_sign_in', to: 'guests/sessions#guest_sign_in'
+  end
  
   scope module: :public do
     resources :users
     resources :regions,only: [:index,:show]
     resources :posts
   end
+  
   
  
  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {

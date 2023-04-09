@@ -1,5 +1,7 @@
 class Public::UsersController < ApplicationController
-  before_action :ensure_current_user
+    
+  before_action :ensure_guest_user, only: [:edit]
+  
   
   def show
     @user = User.find(current_user.id)
@@ -24,11 +26,11 @@ class Public::UsersController < ApplicationController
       params.require(:user).permit(:name, :birthplace, :introduction,:profile_image,)
     end
     
-    def ensure_current_user
-     if !user_signed_in?
-       #ログイン/未ログインの処理 未ログインならトップへ
-      redirect_to root_path
-     end 
-    end 
+    def ensure_guest_user
+    @user = User.find(params[:id])
+    if @user.name == "guestuser"
+      redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+    end
+    end  
   
 end
