@@ -12,9 +12,21 @@
       <div id=<%="favorite-box"+ @post.id.to_s %>>
         <%= render 'public/favorites/favorite', post: @post %>
       </div>
+      <p class="comments-counter">
+            <%= render "public/comments/counter", post: @post %>
+      </p>
+      
+       <div>
       <% if @post.user == current_user %>
         <%= link_to '編集する', edit_post_path(@post), class: "btn btn-sm btn-success" %>
         <%= link_to '削除する', @post, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger "%>
       <% end %>
+      </div>
+      <div class="comments-index">
+      <%= render "public/comments/index", post: @post %>
+    </div>
+      <div class="comments-form">
+      <%= render "public/comments/form", post: @post, comment: @comment %>
+    </div>
   </div>
 </div>

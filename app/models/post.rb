@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :region
   has_many :favorites, dependent: :destroy
+  has_many :comments, dependent: :destroy
   
   validates :title, length: { minimum: 2, maximum: 20 }
   validates :body, length: {maximum:200}
