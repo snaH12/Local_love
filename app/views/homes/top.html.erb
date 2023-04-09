@@ -1,25 +1,33 @@
 <div class="container">
   <div class="row">
     <div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6'>
-      <h1>Local_Love</h1>
-      <p>〜地方に恋するその瞬間〜</p>
-      <p>全国の人へ地元の情報をお届け！</br>
-      あなたの地元の情報をアピールしよう！
-      </p>
+      <div style="padding: 50px;position: relative;">
+       
+        <h1 style="padding: 10px; ">Local_Love</h1>
+        <p>〜地方に恋するその瞬間〜</p>
+        <p>全国の人へ地元の情報をお届け！</br>
+        あなたの地元の情報をアピールしよう！
+        </p>
+         <%#= image_tag 'mv', class: "w-100", style: "background-position: center; background-size: cover;" %>
+      </div>
+      
+      <!--<div class="swiper-slide">-->
+      <!--    <img src="app/assets/images/mount-fuji-g50f3dc30b_640" alt="">-->
+      <!--</div>-->
       
       <div class="btn-wrapper col-10 mx-auto">
         <div class="row">
-          <%= link_to 'ゲストログイン（閲覧用）', guests_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+          <p class="ml-3">
+            <%= link_to 'ログイン',new_user_session_path, class: "btn btn-info btn-block sign_in" %>
+          </p>
+          <p class="ml-3">
+            <%= link_to 'サインイン', new_user_registration_path, class: "btn btn-success btn-block sign_up" %>
+          </p>
         </div>
         <div class="row">
-          <div class="ml-6">
-            <%= link_to 'ログイン',new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
-          </div>
-        </div>
-        <div class="row">
-          <div class="ml-6">
-            <%= link_to 'サインイン', new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
-          </div>
+          <p class="ml-3">
+          <%= link_to 'ゲストログイン（閲覧用）', guests_guest_sign_in_path, class: "btn btn-secondary btn-block sign_in", method: :post %>
+          </p>
         </div>
       </div>
     </div>
