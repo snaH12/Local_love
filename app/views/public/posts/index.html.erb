@@ -1,21 +1,19 @@
 <div class="container">
   <div class="row">
-    <div class='col-md-12 offset-md-1'>
+    <div class="col-9">
       <%= render 'public/regions/index',regions: @regions %>
-        <h2 style="margin-right: 10px;">投稿一覧</h2>
-        <p>（全<%= @posts.count %>件）</p>
-      <div>
-        <% @posts.each do |post|%>
-          <div class="card m-2 text-center card-warpper">
+      <h3><strong>投稿一覧</strong>（全<%= @posts.count %>件）</h3>
+      <div class="row mt-3">
+      　<% @posts.each do |post|%>
+          <div class="col-3">
             <%= link_to post_path(post.id) do %>
-              <%= image_tag post.get_image(100,100), class:"card-image-top" %>
-              <div class="card-body text-dark py-2 font-weight-bold ">
-                <%= link_to post.title, post_path(post.id), class: "card-title mb-2" %>
-              </div>
+              <%= image_tag post.get_image(100,100), class: "mb-2 d-block w-100", style: "background-size: cover; background-position: center;" %>
+            <p class="mb-2"><%= post.title%></p>
             <% end %>
+            <p class="mb-2"><%= post.region.name %></p>
+            <p class="mb-2"><%= post.user.name %></p>
           </div>
         <% end %>
       </div>
-    </div>
   </div>
 </div>

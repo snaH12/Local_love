@@ -1,10 +1,41 @@
-<h2>投稿編集画面</h2>
-
-  		<%= render 'layouts/errors', obj: @post %>
-  		<%= render 'form', book: @book %>
-  		<%= link_to 'Show', @book, class: "book_#{@book.id}" %> |
-  		<%= link_to 'Back', books_path, class: "back" %>
+<div class="container">
+  <div class="row mt-4">
+    <div class="col-10 mx-auto">
+      <h2 class="text-center w-25 h4">投稿編集</h2>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col-6 mx-auto">
+      <%= render 'layouts/errors', obj: @post %>
+      <%= form_with model: @post, url: post_path(@post) do |f| %>
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td><%= f.label :image, '画像', class: "col-form-label" %></td>
+            <td><%= f.file_field :image, accept: 'image/*', class: "form-control-file" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :title,'タイトル', class: "col-form-label" %></td>
+            <td><%= f.text_field :title, placeholder: 'ここタイトルを記述します', class: "form-control post_title" %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <%= f.collection_select(:region_id, *[Region.all], :id, :name, {include_blank:"-- 選択してください --"}, {class:"custom-select"}) %>
+            </td>
+          </tr>
+          <tr>
+            <td><%= f.label :body, '本文', class: "col-form-label" %></td>
+            <td><%= f.text_area :body,  class: "form-control" %></td>
+          </tr>
+            <tr>
+              <td></td>
+              <td><%= f.submit '更新する', class: "btn btn-success btn-lg" %></td>
+            </tr>
+          <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>

@@ -2,25 +2,37 @@
   <div class="row no-gutters">
     <div class='col-md-12 offset-md-1'>
       <h2 class= 'text-dark p-4 mb-0'>新規投稿</h2>
-      <%= form_with model:@post,local:true do |f| %>
-       <%= render 'layouts/errors', obj: @post %>
-       
-       <div class="w-50 mx-auto form-group">
-          <%= f.label :image %>
-          <%= f.file_field :image, accept: "image/*" %>
-        </div>
-        <div class="w-50 mx-auto form-group">
-          <%= f.label :title %>
-          <%= f.text_field :title, class: 'form-control post_title' %>
-        </div>
-        <div class="w-50 mx-auto form-group">
-          <%= f.label :body %>
-          <%= f.text_area :body, class: 'form-control post_body' %>
-        </div>
-        <div class="form-group text-center">
-          <%= f.submit"投稿", class: 'btn btn-success' %>
-        </div>
-      <% end %>
+　　　<%= form_with model:@post,local:true do |f| %>
+ 　　　<%= render 'layouts/errors', obj: @post %>
+      <table class="table table-borderless">
+        <tbody>
+          <tr>
+            <td><%= f.label :image, '画像', class: "col-form-label" %></td>
+            <td><%= f.file_field :image, accept: 'image/*', class: "form-control-file" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :title,'タイトル', class: "col-form-label" %></td>
+            <td><%= f.text_field :title, placeholder: 'ここタイトルを記述します', class: "form-control post_title" %></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <%= f.collection_select(:region_id, *[Region.all], :id, :name, {include_blank:"-- 選択してください --"}, {class:"custom-select"}) %>
+            </td>
+          </tr>
+          <tr>
+            <td><%= f.label :body, '本文', class: "col-form-label" %></td>
+            <td><%= f.text_area :body,  class: "form-control" %></td>
+          </tr>
+            <tr>
+              <td></td>
+              <td><%= f.submit '投稿', class: "btn btn-success btn-lg" %></td>
+            </tr>
+          <% end %>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
+
