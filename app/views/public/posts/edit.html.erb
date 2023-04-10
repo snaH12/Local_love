@@ -19,7 +19,7 @@
             <td><%= f.text_field :title, placeholder: 'ここタイトルを記述します', class: "form-control post_title" %></td>
           </tr>
           <tr>
-            <td></td>
+            <td><%= f.label :title,'地方', class: "col-form-label" %></td>
             <td>
               <%= f.collection_select(:region_id, *[Region.all], :id, :name, {include_blank:"-- 選択してください --"}, {class:"custom-select"}) %>
             </td>

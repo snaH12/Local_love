@@ -1,34 +1,40 @@
 <div class="container">
   <div class="row no-gutters">
-    <div class="col-md-9 mx-sm-auto text-center shadow-lg">
-        <h2>会員情報編集</h2>
-        
-        <%= form_with model: @user, url: user_path(current_user), method: :patch do |f| %>
-         <%= render 'layouts/errors', obj: @user %>
-        <table>
-            <tr>
-                <td>名前</td>
-                <td>
-                    <%= f.text_field :name %>
-                </td>
-            </tr>
-            <tr>
-                <td>出身県（任意）</td>
-                <td>
-                    <%= f.text_field :birthplace %>
-                </td>
-            </tr>
-            <tr>
-                <td>紹介文</td>
-                <td>
-                    <%= f.text_field :introduction %>
-                </td>
-            </tr>
-            <tr>
-              <td><%= f.submit "編集内容を保存", class: 'btn btn-success' %></td>
-            </tr>
+    <div class="col-md-9 mx-sm-auto text-center">
+        <h2 class='m-5'>会員情報編集</h2>
+    </div>
+    <div class="row mt-4 w-100">
+        <div class="col-6 mx-auto">
+          <%= form_with model: @user, url: user_path(current_user), method: :patch do |f| %>
+           <%= render 'layouts/errors', obj: @user %>
+            <table class="table table-borderless">
+                <tr>
+                    <td><%= f.label :profile_image, '画像', class: "col-form-label" %></td>
+                    <td><%= f.file_field :profile_image, accept: 'image/*', class: "form-control-file" %></td>
+                 </tr>
+                <tr>
+                    <td><%= f.label :name, '名前', class: "col-form-label" %></td>
+                    <td>
+                        <%= f.text_field :name, class: "form-control" %>
+                    </td>
+                </tr>
+                <tr>
+                    <td><%= f.label :birthplace, '出身県（任意）', class: "col-form-label" %></td>
+                    <td>
+                        <%= f.text_field :birthplace, class: "form-control" %>
+                    </td>
+                </tr>
+                <tr>
+                    <td><%= f.label :introduction, '紹介文', class: "col-form-label" %></td>
+                    <td>
+                        <%= f.text_area :introduction,rows:'5', class: "form-control" %>
+                    </td>
+                </tr>
+                <tr>
+                  <td><%= f.submit "編集内容を保存", class: 'btn btn-success' %></td>
+                </tr>
             </table>
-        <% end %>
+          <% end %>
     </div>
   </div>
 </div>

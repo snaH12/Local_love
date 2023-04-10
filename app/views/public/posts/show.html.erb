@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-      <h2 class='col-md-12 offset-md-1'>投稿詳細</h2>
+      <h2 class="col-md-12 offset-md-1">投稿詳細</h2>
   </div>
   <div class="row">
     <div class="ml-5 col-4">
@@ -8,7 +8,8 @@
     </div>
     <div class="col-4">
       <h3 class="mb-3"><%= @post.title %></h3>
-      <h4 class="mb-5"><%= @post.body %></h4>
+      <div class="mb-3"><%= @post.region.name %></div>
+      <div class="mb-5"><%= @post.body %></div>
       <div id=<%="favorite-box"+ @post.id.to_s %>>
         <%= render 'public/favorites/favorite', post: @post %>
       </div>
@@ -22,11 +23,18 @@
         <%= link_to '削除する', @post, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger "%>
       <% end %>
       </div>
-      <div class="comments-index">
-      <%= render "public/comments/index", post: @post %>
     </div>
+  </div>
+  <div class="row mt-4 d-block">
+    <div class="col-4">
+      <div class="comments-index">
+       <%= render "public/comments/index", post: @post %>
+      </div>
+    </div>
+    <div class="col-4 pt-4">
       <div class="comments-form">
-      <%= render "public/comments/form", post: @post, comment: @comment %>
+        <%= render "public/comments/form", post: @post, comment: @comment %>
+      </div>
     </div>
   </div>
 </div>
