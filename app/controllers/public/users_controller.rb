@@ -4,7 +4,7 @@ class Public::UsersController < ApplicationController
   
   
   def show
-    @user = User.find(current_user.id)
+    @user = User.find(params[:id])
   end 
 
   def edit
@@ -20,6 +20,19 @@ class Public::UsersController < ApplicationController
      render :edit
     end 
   end
+  
+  def unsubscribe
+  end 
+  
+  #退会処理
+  def withdrawal
+    @user = User.find(current_user.id)
+    @user.update(is_deleted: true)
+    reset_session
+    flash[:notice] = "退会しました。"
+    redirect_to root_path
+  end
+  
   
   private
     def user_params

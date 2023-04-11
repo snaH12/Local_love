@@ -2,6 +2,11 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <div>
+          <% if user_signed_in? %>
+           <%= render 'layouts/search' %>
+          <% end %>
+        </div>
         <ul class="navbar-nav ml-auto">
         <% if user_signed_in? %>
           <li>

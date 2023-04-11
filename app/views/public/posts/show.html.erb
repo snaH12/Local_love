@@ -10,6 +10,11 @@
       <h3 class="mb-3"><%= @post.title %></h3>
       <div class="mb-3"><%= @post.region.name %></div>
       <div class="mb-5"><%= @post.body %></div>
+      <div class="mb-3">
+        <%= link_to user_path(@post.user.id) do%>
+          <%= @post.user.name %>
+        <% end %>
+      </div>
       <div id=<%="favorite-box"+ @post.id.to_s %>>
         <%= render 'public/favorites/favorite', post: @post %>
       </div>

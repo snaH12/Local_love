@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   end
  
   scope module: :public do
+    get 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    patch 'users/withdrawal' => 'users#withdrawal', as: 'withdrawal'
     resources :users
     resources :regions,only: [:index]
     get "search" => "searches#search"
