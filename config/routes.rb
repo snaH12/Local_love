@@ -12,7 +12,8 @@ Rails.application.routes.draw do
  
   scope module: :public do
     resources :users
-    resources :regions,only: [:index,:show]
+    resources :regions,only: [:index]
+    get "search" => "searches#search"
     resources :posts do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create,:destroy]
