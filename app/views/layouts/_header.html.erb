@@ -11,17 +11,17 @@
         <% if user_signed_in? %>
           <li>
             <%= link_to new_post_path,class: 'nav-link text-light' do %>
-              投稿フォーム
+              <i class="fas fa-solid fa-pen-fancy"></i>投稿フォーム
             <% end %>
           </li>
           <li>
             <%= link_to posts_path,class: 'nav-link text-light' do %>
-              投稿一覧
+              <i class="fas fa-sharp fa-regular fa-paste"></i>投稿一覧
             <% end %>
           </li>
           <li>
             <%= link_to user_path(current_user),class: 'nav-link text-light' do %>
-              マイページ
+              <i class="fas fa-regular fa-user"></i>マイページ
             <% end %>
           </li>
           
