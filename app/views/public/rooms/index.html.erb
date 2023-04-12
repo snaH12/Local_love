@@ -1,0 +1,47 @@
+<h1>Real part</h1>
+<div>
+  <ul>
+    <% @room_lists.each do |room| %>
+      <li><%= link_to "ROOM#{room.id}", room_path(room) %></li>
+    <% end %>
+  </ul>
+</div>
+
+<div class="chat-group">
+　  <h1>All chat groups</h1>
+    <div class="group-search">
+        <div class="group-search-form">
+            <%= form_with(url: rooms_path, local: true) do |f| %>
+                <%= f.text_field :keyword, placeholder: "search for group", class: "group-search-form-input" %>
+                <%= f.submit 'search' %>
+            <% end %>
+        </div>
+        <div class="group-new">
+            <%= link_to 'make a group', new_room_path %>
+        </div>
+
+        <% if @room_joining == [] %>
+            <%= @room_lists_none %>
+        <% else %>
+            <div class="group-list">
+                <ul class="group-list-table">
+                    <% @room_lists.each do |list| %>
+                        <% if list.user_ids.include?(current_user.id) %>
+                            <li class="group-list-table-each-group">
+                                <%= link_to "/rooms/#{list.id}" do %>
+                                    <%= list.roomname %>(<%= list.user_ids.count %>)
+                                    <%= link_to 'edit', edit_room_path(list.id), method: :get %>
+                                    <%= link_to 'delete', room_path(list.id), method: :delete %>
+                                <% end %>
+                            </li>
+                        <% end %>
+                    <% end %>
+                </ul>
+            </div>
+        <% end %>
+
+    </div>
+    <div class="user-page">
+        <%#= link_to 'ユーザーページへ', current_user %>
+    </div>
+</div>

@@ -1,4 +1,4 @@
 <h2>地方一覧</h2>
 <% regions.each do |region|%>
-     <%= link_to region.name, regions_path(region_id: region.id,region_name:region.name),class:"text-dark" %>
+     <%= link_to region.name, region_path(region),class:"text-dark" %>
 <% end %>

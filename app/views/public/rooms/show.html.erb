@@ -1,0 +1,9 @@
+<h1>Real Chat room</h1>
+<div id='messages' data-room_id="<%= @room.id %>">
+  <%= render @messages %>
+</div>
+
+<form>
+  <%= label_tag :content, 'Say something:' %>
+  <input type="text" data-behavior="room_speaker">
+</form>

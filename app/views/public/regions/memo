@@ -1,0 +1,12 @@
+<% @region.each do |region|%>
+<div class="col-3">
+  <%= link_to post_path(post.id) do %>
+    <%= image_tag rigion.post.get_image(100,100), class: "mb-2 d-block w-100", style: "background-size: cover; background-position: center;" %>
+    <p class="mb-2"><%= rigion.post.title%></p>
+  <% end %>
+    <p class="mb-2"><%= region.name %></p>
+    <div id=<%="favorite-box"+ post.id.to_s %>>
+        <p class="mb-2"><%= render 'public/favorites/favorite', post: post %></p>
+    </div>
+</div>
+<% end %>

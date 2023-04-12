@@ -1,22 +1,36 @@
-<h2>検索結果</h2>
-
-<table class="table table-hover table-inverse">
-  <% if @range == "ユーザー名" %>
-    <tbody>
-      <% @users.each do |user| %>
-        <tr>
-          <td><%= user.name %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% else %>
-    <tbody>
-      <% @posts.each do |post| %>
-        <tr>
-          <td><%= post.title %></td>
-          <td><%= post.body %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% end %>
-</table>
+<div class="container">
+  <div class="row">
+    <h2 class="col-md-12 offset-md-1">検索結果</h2>
+    <div class="col-8 mx-auto text-center">
+      <table class="table table-hover table-inverse ">
+        <% if @range == "ユーザー名" %>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td>
+                  <%= link_to user_path(@users) do%>
+                  <%= user.name %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        <% else %>
+          <tbody>
+            <% @posts.each do |post| %>
+              <tr>
+                <td>
+                <%= link_to post_path(@posts) do%>
+                  <%= post.title %>
+                <% end %>
+                </td>
+                <td class="text-wrap"><%= post.body %></td>
+                
+              </tr>
+            <% end %>
+          </tbody>
+        <% end %>
+      </table>
+    </div>
+  </div>
+</div>

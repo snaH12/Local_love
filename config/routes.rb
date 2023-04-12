@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
-   root 'homes#top'
+  
+  root 'homes#top'
    
    devise_for :users,skip: [:passwords], controllers: {
    registrations: "public/registrations",
@@ -14,8 +15,9 @@ Rails.application.routes.draw do
     get 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     patch 'users/withdrawal' => 'users#withdrawal', as: 'withdrawal'
     resources :users
-    resources :regions,only: [:index]
+    resources :regions,only: [:show]
     get "search" => "searches#search"
+    resources :rooms
     resources :posts do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create,:destroy]
@@ -27,5 +29,9 @@ Rails.application.routes.draw do
  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
+scope module: :admin do
+  resources :users, only: [:index, :show, :edit, :update]
+  resources :posts, only: [:index, :show, :edit, :update]
+end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
