@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, authentication_keys: [:name]
          
   has_one_attached :profile_image
   has_many :posts, dependent: :destroy
@@ -31,6 +31,8 @@ class User < ApplicationRecord
       @user = User.all
     end
   end
+  
+  
   
   def get_profile_image(width, height)
     unless profile_image.attached?

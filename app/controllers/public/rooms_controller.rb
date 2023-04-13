@@ -1,10 +1,11 @@
 class Public::RoomsController < ApplicationController
   before_action :authenticate_user!
   
+  
     def index
         @room_lists = Room.all.order(:id)
         @room_joining = RoomUser.where(user_id: current_user.id)
-        @room_lists_none = "You don't join any groups."
+        @room_lists_none = "参加中のグループはありません。"
     end
 
     def new
@@ -15,7 +16,7 @@ class Public::RoomsController < ApplicationController
     def create
         @room = Room.new(room_params)
         if @room.save
-            redirect_to rooms_path, notice: 'make a group.'
+            redirect_to rooms_path, notice: 'グループを作成しました。'
         else
             render :new
         end
@@ -27,13 +28,11 @@ class Public::RoomsController < ApplicationController
     end
 
     def edit
-        # @group = Group.find(params[:id])
     end
 
     def update
-        # @group = Group.find(params[:id])
         if @room.update(room_params)
-            redirect_to rooms_path, notice: 'update your group.'
+            redirect_to rooms_path, notice: '更新しました。'
         else
             render :edit
         end
@@ -42,7 +41,16 @@ class Public::RoomsController < ApplicationController
     def destroy
         delete_room = Room.find(params[:id])
         if delete_room.destroy
-            redirect_to rooms_path, notice: 'delete your group.'
+            redirect_to rooms_path, notice: 'グループを削除しました。'
+        end
+    end
+    
+    def join
+        room_user = RoomUser.new
+        room_user.room_id = params[:id]
+        room_user.user_id = current_user.id
+        if room_user.save
+            redirect_to room_path(params[:id])
         end
     end
 
@@ -54,5 +62,6 @@ class Public::RoomsController < ApplicationController
     def room_params
         params.require(:room).permit(:roomname, user_ids: [])
     end
-  
+    
+   
 end

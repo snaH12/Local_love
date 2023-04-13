@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     resources :users
     resources :regions,only: [:show]
     get "search" => "searches#search"
+    post 'rooms/:id/join' => 'rooms#join', as: 'rooms_join'
     resources :rooms
     resources :posts do
       resource :favorites, only: [:create, :destroy]
@@ -29,7 +30,7 @@ Rails.application.routes.draw do
  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
-scope module: :admin do
+namespace :admin do
   resources :users, only: [:index, :show, :edit, :update]
   resources :posts, only: [:index, :show, :edit, :update]
 end

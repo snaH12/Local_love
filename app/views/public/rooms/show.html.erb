@@ -1,9 +1,24 @@
-<h1>Real Chat room</h1>
-<div id='messages' data-room_id="<%= @room.id %>">
-  <%= render @messages %>
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+      <h1><%= @room.roomname %></h1>
+      <div id='messages' data-room_id="<%= @room.id %>">
+        <%= render @messages %>
+      </div>
+      
+      <% if current_user.room_users.present? && current_user.room_users.find_by(room_id: @room.id) %>
+        <form>
+          <%= label_tag :content, 'Say something:' %>
+          <input type="text" data-behavior="room_speaker">
+        </form>
+      <% else %>
+        <div>
+          <%= button_to "join", rooms_join_path(@room.id), method: :post %>
+        </div>
+      <% end %>
+      <div>
+        <%= link_to "戻る",rooms_path %>
+      </div>
+    </div>
+  </div>
 </div>
-
-<form>
-  <%= label_tag :content, 'Say something:' %>
-  <input type="text" data-behavior="room_speaker">
-</form>
