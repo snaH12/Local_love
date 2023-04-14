@@ -50,9 +50,16 @@ class Public::RoomsController < ApplicationController
         room_user.room_id = params[:id]
         room_user.user_id = current_user.id
         if room_user.save
-            redirect_to room_path(params[:id])
+            redirect_to room_path(params[:id]), notice: 'グループに参加しました。'
         end
     end
+    
+    def leave
+        room_user = current_user.room_users.find_by(room_id: params[:room_id])
+        room_user.destroy
+        redirect_to request.referer, notice: 'グループから退出しました。'
+    end
+    
 
     private
     def set_group

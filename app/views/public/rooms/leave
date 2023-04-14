@@ -1,3 +1,17 @@
+  グループ退出
+  
+   controller
+   def leave
+        room_user = current_user.room_users.find_by(room_id: params[:room_id])
+        room_user.destroy
+        redirect_to request.referer, notice: 'グループから退出しました。'
+    end
+    
+    view
+    <div>
+        <%= button_to "グループから退出", rooms_leave_path(@room.id), method: :delete , class: "btn btn-sm btn-danger"%>
+    </div>
+    
 <div class="container">
   <div class="row">
     <div class="col-9">
@@ -5,6 +19,10 @@
       <div id='messages' data-room_id="<%= @room.id %>">
         <%= render @messages %>
       </div>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-9">
       <% if current_user.room_users.present? && current_user.room_users.find_by(room_id: @room.id) %>
         <form>
           <%= label_tag :content, 'Say something:' %>
@@ -18,9 +36,8 @@
           <%= button_to "グループに参加", rooms_join_path(@room.id), method: :post , class: "btn btn-sm btn-danger" %>
         </div>
       <% end %>
-      <diV>
+      <div>
         <%= link_to "戻る",rooms_path %>
-      </div>
       </div>
     </div>
   </div>
