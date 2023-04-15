@@ -25,7 +25,7 @@
             <td><%= f.text_area :body, rows:'5', placeholder: '撮影場所・時期など',class: "form-control" %></td>
           </tr>
             <tr>
-              <td></td>
+              <td><%= f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"),k]}, {}, {class: "custom-select w-25"} %>
               <td><%= f.submit '投稿', class: "btn btn-success btn-lg " %></td>
             </tr>
           <% end %>

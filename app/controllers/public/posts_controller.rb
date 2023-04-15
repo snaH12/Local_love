@@ -20,6 +20,7 @@ class Public::PostsController < ApplicationController
   
   def index
     @posts = Post.page(params[:page])
+    @posts = @posts.where('location LIKE ?', "%#{params[:search]}%") if params[:search].present?
     @regions = Region.all
   end
 
@@ -49,10 +50,14 @@ class Public::PostsController < ApplicationController
     redirect_to posts_path
   end
   
+  def confirm
+  @posts = current_user.posts.draft.page(params[:page]).reverse_order
+  end
+  
   private
 
   def post_params
-    params.require(:post).permit(:image,:title,:body,:region_id)
+    params.require(:post).permit(:image,:title,:body,:region_id, :status)
   end
   
   def  is_matching_login_user

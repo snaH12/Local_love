@@ -8,6 +8,8 @@ class Post < ApplicationRecord
   validates :title, length: { minimum: 2, maximum: 20 }
   validates :body, length: {maximum:200}
   
+  enum status: { published: 0, draft: 1 }
+  
   
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
