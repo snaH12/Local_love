@@ -32,6 +32,9 @@ class User < ApplicationRecord
     end
   end
   
+  def favorited?(item)
+    favorites.exists?(user_id: user.id)
+  end
   
   
   def get_profile_image(width, height)

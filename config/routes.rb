@@ -14,7 +14,10 @@ Rails.application.routes.draw do
   scope module: :public do
     get 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     patch 'users/withdrawal' => 'users#withdrawal', as: 'withdrawal'
-    resources :users
+    
+    resources :users do
+      get :favorites
+    end
     resources :regions,only: [:show]
     get "search" => "searches#search"
     post 'rooms/:id/join' => 'rooms#join', as: 'rooms_join'
