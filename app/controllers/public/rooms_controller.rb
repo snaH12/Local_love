@@ -1,74 +1,66 @@
 class Public::RoomsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :ensure_correct_user, only: [:edit, :update]
+
+  def index
+    @rooms = Room.all
+  end
+
+  def show
+    @room = Room.find(params[:id])
+    @messages = @room.messages
+    @message = Message.new(room_id: @room.id)
+  end
   
+  def join
+    @room = Room.find(params[:room_id])
+    @room.users << current_user
+    redirect_to  rooms_path
+  end
+
+  def new
+    @room = Room.new
+  end
   
-    def index
-        @room_lists = Room.all.order(:id)
-        @room_joining = RoomUser.where(user_id: current_user.id)
-        @room_lists_none = "参加中のグループはありません。"
-    end
-
-    def new
-        @room = Room.new
-        @room.users << current_user
-    end
-
-    def create
-        @room = Room.new(room_params)
-        if @room.save
-            redirect_to rooms_path, notice: 'グループを作成しました。'
-        else
-            render :new
-        end
-    end
-
-    def show
-        @room = Room.find(params[:id])
-        @messages = @room.messages
-    end
-
-    def edit
-    end
-
-    def update
-        if @room.update(room_params)
-            redirect_to rooms_path, notice: '更新しました。'
-        else
-            render :edit
-        end
-    end
-
-    def destroy
-        delete_room = Room.find(params[:id])
-        if delete_room.destroy
-            redirect_to rooms_path, notice: 'グループを削除しました。'
-        end
-    end
+  def create
+    @room = Room.new(room_params)
+    @room.owner_id = current_user.id
     
-    def join
-        room_user = RoomUser.new
-        room_user.room_id = params[:id]
-        room_user.user_id = current_user.id
-        if room_user.save
-            redirect_to room_path(params[:id]), notice: 'グループに参加しました。'
-        end
+    @room.users << current_user
+    if @room.save
+      redirect_to rooms_path
+    else
+      render 'new'
     end
-    
-    def leave
-        room_user = current_user.room_users.find_by(room_id: params[:room_id])
-        room_user.destroy
-        redirect_to request.referer, notice: 'グループから退出しました。'
-    end
-    
+  end
+  
+  def edit
+  end
 
-    private
-    def set_group
-        @room = Room.find(params[:id])
+  def update
+    if @room.update(room_params)
+      redirect_to rooms_path
+    else
+      render "edit"
     end
+  end
+  
+  def destroy
+    @room = Room.find(params[:id])
+    @room.users.delete(current_user)
+    redirect_to rooms_path
+  end
 
-    def room_params
-        params.require(:room).permit(:roomname, user_ids: [])
+
+  private
+
+  def room_params
+    params.require(:room).permit(:name)
+  end
+
+  def ensure_correct_user
+    @room = Room.find(params[:id])
+    unless @room.owner_id == current_user.id
+      redirect_to rooms_path
     end
-    
-   
+  end
 end

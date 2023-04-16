@@ -1,7 +1,0 @@
-<div class='message'>
-    <% if message.user_id == current_user.id %>
-      <p style="text-align: right;"><%= " #{message.content}" %></p>
-    <% else %>
-      <p style="text-align: left;"><%= "#{message.user.name}: #{message.content}" %></p>
-    <% end %>
-</div>

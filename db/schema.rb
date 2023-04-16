@@ -68,9 +68,9 @@ ActiveRecord::Schema.define(version: 2023_04_15_025848) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.string "content"
-    t.integer "user_id", null: false
-    t.integer "room_id", null: false
+    t.integer "user_id"
+    t.integer "room_id"
+    t.text "message", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -93,8 +93,8 @@ ActiveRecord::Schema.define(version: 2023_04_15_025848) do
   end
 
   create_table "room_users", force: :cascade do |t|
-    t.integer "room_id"
     t.integer "user_id"
+    t.integer "room_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["room_id"], name: "index_room_users_on_room_id"
@@ -102,9 +102,8 @@ ActiveRecord::Schema.define(version: 2023_04_15_025848) do
   end
 
   create_table "rooms", force: :cascade do |t|
-    t.string "roomname"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.integer "owner_id"
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|

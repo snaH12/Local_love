@@ -8,9 +8,10 @@ class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :messages
+  
   has_many :room_users, dependent: :destroy
   has_many :rooms, through: :room_users, source: :room, dependent: :destroy
+  has_many :messages
   
   validates :name, length: { minimum: 2, maximum: 20 }
   validates :introduction, length: {maximum:50}

@@ -1,6 +1,6 @@
 require "test_helper"
 
-class MessageBroadcastJobTest < ActiveJob::TestCase
+class Public::ChatsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

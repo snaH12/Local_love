@@ -20,9 +20,13 @@ Rails.application.routes.draw do
     end
     resources :regions,only: [:show]
     get "search" => "searches#search"
-    post 'rooms/:id/join' => 'rooms#join', as: 'rooms_join'
-    delete 'rooms/:id/leave' => 'rooms#leave', as: 'rooms_leave'
-    resources :rooms
+    
+    resources :rooms do
+    get "join" => "rooms#join"
+    resources :messages, only: [:create]
+   end
+   
+    
     resources :posts do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create,:destroy]
