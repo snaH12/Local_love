@@ -28,10 +28,14 @@
             <td><%= f.label :body, '本文', class: "col-form-label" %></td>
             <td><%= f.text_area :body,  class: "form-control" %></td>
           </tr>
-            <tr>
-              <td><%= f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"),k]}, {}, {class: "custom-select w-25"} %></td>
-              <td><%= f.submit '更新する', class: "btn btn-success btn-lg" %></td>
-            </tr>
+          <tr>
+            <td><%= f.label"タグ (,で区切ると複数タグ登録できます)" %></td>
+            <td><%= f.text_field :name,value: @tag_list,class:"form-control"%></td>
+          </tr>
+          <tr>
+            <td><%= f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"),k]}, {}, {class: "custom-select w-25"} %></td>
+            <td><%= f.submit '更新する', class: "btn btn-success btn-lg" %></td>
+          </tr>
           <% end %>
           </tr>
         </tbody>

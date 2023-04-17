@@ -3,7 +3,7 @@
     <div class="col-9">
       <%= render 'public/regions/index',regions: @regions %>
       <h3><strong>投稿一覧</strong>（全<%= @posts.count %>件）</h3>
-      <%= render 'index', posts: @posts %>
+      <%= render 'index', posts: @posts,tag_list:@tag_list %>
     </div>
   </div>
 </div>

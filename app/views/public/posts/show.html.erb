@@ -21,6 +21,11 @@
       <p class="comments-counter">
             <%= render "public/comments/counter", post: @post %>
       </p>
+      <p class="post_tags">
+        <% @post_tags.each do |tag| %>
+          <i class="fas fa-regular fa-hashtag"></i><%= link_to tag.name,search_tag_path(tag_id: tag.id)%><%="(#{tag.posts.count})" %>
+        <% end %>
+      </p>
       
        <div>
       <% if @post.user == current_user %>

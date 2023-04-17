@@ -7,10 +7,13 @@ class Public::PostsController < ApplicationController
   end
   
   def create
-    post = Post.new(post_params)
-    post.user_id = current_user.id
-    if post.save
-      redirect_to post_path(post), notice: "You have created book successfully."
+    @post = Post.new(post_params)
+    @post.user_id = current_user.id
+    #タグの配列を作成
+    tag_list = params[:post][:name].split(',')
+    if @post.save
+      @post.save_tag(tag_list)
+      redirect_to post_path(@post), notice: "投稿が完了しました。"
     else
       @post = Post.new
       @posts = Post.all
@@ -19,29 +22,46 @@ class Public::PostsController < ApplicationController
   end
   
   def index
-    @posts = Post.page(params[:page])
+    @posts = Post.where(status: :published).order(params[:sort]).page(params[:page]).per(12)
     @posts = @posts.where('location LIKE ?', "%#{params[:search]}%") if params[:search].present?
     @regions = Region.all
+    @tag_list=Tag.all
   end
-
+  
+  
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
+    #その投稿に紐づくタグを表示
+    @post_tags = @post.tags
   end
-
+  
+  
   def edit
     @post = Post.find(params[:id])
+    @tag_list=@post.tags.pluck(:name).join(',')
   end
+  
   
   def update
     @post = Post.find(params[:id])
+    tag_list=params[:post][:name].split(',')
     if @post.update(post_params)
-     flash[:notice] = "変更を保存しました。"
-     redirect_to post_path(@post)
+      if params[:post][:status]== "published"
+        @old_relations=PostTag.where(post_id: @post.id)
+        @old_relations.each do |relation|
+        relation.delete
+        end  
+        @post.save_tag(tag_list)
+       redirect_to post_path(@post), notice: "変更を保存しました。"
+      else 
+        redirect_to posts_path
+      end
     else
      render :edit
     end 
   end
+  
   
   def destroy
     @post = Post.find(params[:id])
@@ -50,9 +70,19 @@ class Public::PostsController < ApplicationController
     redirect_to posts_path
   end
   
+  
   def confirm
-  @posts = current_user.posts.draft.page(params[:page]).reverse_order
+    @tag_list=Tag.all
+    @posts = current_user.posts.draft.page(params[:page]).reverse_order
   end
+  
+  
+  def search_tag
+    @tag_list=Tag.all
+    @tag=Tag.find(params[:tag_id])
+    @posts=@tag.posts.page(params[:page]).per(10)
+  end
+  
   
   private
 

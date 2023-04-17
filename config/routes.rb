@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   
-  
   root 'homes#top'
    
    devise_for :users,skip: [:passwords], controllers: {
@@ -20,6 +19,7 @@ Rails.application.routes.draw do
     end
     resources :regions,only: [:show]
     get "search" => "searches#search"
+    get "search_tag"=>"posts#search_tag"
     
     resources :rooms do
     get "join" => "rooms#join"
@@ -44,6 +44,8 @@ Rails.application.routes.draw do
 namespace :admin do
   resources :users, only: [:index, :show, :edit, :update]
   resources :posts, only: [:index, :show, :edit, :update]
+  resources :comments, only:[:index,:destroy]
+  resources :rooms, only:[:index,:show,:destroy]
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

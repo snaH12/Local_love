@@ -1,9 +1,9 @@
 <div class='message'>
     <% messages.each do |message| %>
      <% if message.user_id == current_user.id %>
-      <p style="text-align: right;"><%= message.message %></td>
+      <p style="text-align: right;"><%= message.message %></p>
      <% else %>
-      <p style="text-align: left;"><%= message.user.name %>:<%= message.message %></td>
+      <p style="text-align: left;"><%= message.user.name %>:<%= message.message %></p>
      <% end %>
     <% end %>
 </div>

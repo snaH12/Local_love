@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="row">
+    <div class="col-9">
+      <h5>タグが<%=@tag.name%>の投稿一覧</h5>
+      <div>
+        <%= render 'index', posts: @posts,tag_list:@tag_list %>
+      </div>
+    </div>
+  </div>
+</div>

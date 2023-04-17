@@ -1,2 +1,21 @@
-<h1>Admin::Posts#index</h1>
-<p>Find me in app/views/admin/posts/index.html.erb</p>
+<div class='container'>
+ <div class='row'>
+  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  <h2>投稿一覧（全<%= @posts.count %>件）</h2>
+  </div>
+ </div>
+
+  <div class="row">
+  <% @posts.each do |post|%>
+   <div class="col-3">
+        <%= link_to post_path(post.id) do %>
+          <%= image_tag post.get_image(100,100), class: "mb-2 d-block w-100", style: "background-size: cover; background-position: center;" %>
+          <p class="mb-2"><%= post.title%></p>
+        <% end %>
+        <p class="mb-2"><%= post.region.name %></p>
+    </div>
+   <% end %>
+   <%= paginate @posts %>
+ 
+ </div>
+</div>

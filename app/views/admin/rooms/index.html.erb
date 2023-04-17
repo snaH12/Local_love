@@ -1,0 +1,26 @@
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-8 offset-md-1'>
+      <h2>ルーム一覧</h2>
+      <table class='table table-hover table-inverse'>
+        <thead>
+          <tr>
+            <th>ルーム名</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @rooms.each do |room| %>
+            <tr>
+              <td><%= link_to room.name, admin_room_path(room.id) %></td>
+              <td><%= room.users.count %></td>
+              <td>
+                  <%= link_to '削除', admin_room_path(room.id),method: :delete, class: "btn btn-sm btn-success" %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
