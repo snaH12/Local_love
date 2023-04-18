@@ -1,3 +1,18 @@
-<h1><%= @region.name%>地方</h1>
-<h1>画像</h1>
-<P>~~~~~~~</P>
+<div class="container">
+    <h1><%= @region.name%>地方投稿一覧</h1>
+    <div class="row mt-3">
+        <% @posts.each do |post|%>
+        <div class="col-3">
+            <%= link_to post_path(post.id) do %>
+                <%= image_tag post.get_image(100,100), class: "mb-2 d-block w-100", style: "background-size: cover; background-position: center;" %>
+                <p class="mb-2"><%= post.title%></p>
+            <% end %>
+            <p class="mb-2"><%= post.region.name %></p>
+            <div id=<%="favorite-box"+ post.id.to_s %>>
+                <p class="mb-2"><%= render 'public/favorites/favorite', post: post %></p>
+                <p><i class="fas fa-regular fa-hashtag"></i><%= post.tags.map(&:name).join(', ') %></i></p>
+            </div>
+        </div>
+        <% end %>
+    </div>
+</div>

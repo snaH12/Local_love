@@ -1,2 +1,46 @@
-<h1>Admin::Posts#show</h1>
-<p>Find me in app/views/admin/posts/show.html.erb</p>
+<div class="container">
+  <div class="row">
+      <h2 class="col-md-12 offset-md-1">投稿詳細</h2>
+  </div>
+  <div class="row">
+    <div class="ml-5 col-4">
+      <%= image_tag @post.get_image(300,200), style: "background-cover; background-position: center;" %>
+    </div>
+    <div class="col-4">
+      <h3 class="mb-3"><%= @post.title %></h3>
+      <div class="mb-3"><%= @post.region.name %></div>
+      <div class="mb-5"><%= @post.body %></div>
+      <div class="mb-3">
+          <%= link_to admin_user_path(@post.user.id),class: 'text-primary' do %>
+            <%= @post.user.name %>
+          <% end %>
+       </div>
+      
+      <div id=<%="favorite-box"+ @post.id.to_s %>>
+        ♥<%= @post.favorites.count %>
+      </div>
+      <p>コメント数: <%= @post.comments.count %></p>
+      <p class="post_tags">
+        <% @post_tags.each do |tag| %>
+          <i class="fas fa-regular fa-hashtag"></i><%= link_to tag.name,search_tag_path(tag_id: tag.id)%><%="(#{tag.posts.count})" %>
+        <% end %>
+      </p>
+      <h1>コメント一覧</h1>
+      <div>
+    　　<% @comments.each do |comment| %>
+        <div>
+            <p><%= comment.comment %></p>
+            <p><%= comment.user.name %></p>
+            <p><%= link_to "削除" , admin_comment_path(comment.id),method: :delete %></p>
+        </div>
+        <% end %>
+　　　　</div>
+      
+      
+       <div>
+        <%= link_to '投稿を削除する', @post, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger "%>
+      </div>
+    </div>
+  </div>
+  
+</div>

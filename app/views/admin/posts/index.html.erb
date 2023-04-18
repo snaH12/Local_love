@@ -8,11 +8,10 @@
   <div class="row">
   <% @posts.each do |post|%>
    <div class="col-3">
-        <%= link_to post_path(post.id) do %>
+        <%= link_to admin_post_path(post.id) do %>
           <%= image_tag post.get_image(100,100), class: "mb-2 d-block w-100", style: "background-size: cover; background-position: center;" %>
           <p class="mb-2"><%= post.title%></p>
         <% end %>
-        <p class="mb-2"><%= post.region.name %></p>
     </div>
    <% end %>
    <%= paginate @posts %>

@@ -3,6 +3,7 @@ class Public::RegionsController < ApplicationController
   
   def show
     @region = Region.find_by(id:params[:id])
+    @posts = @region.posts
   end
   private
 

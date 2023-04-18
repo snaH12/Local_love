@@ -39,9 +39,24 @@
             </div>
             </div>
         </diV>
-        <div><%=link_to"お気に入り記事",user_favorites_path(@user) %></div>
-        <div><%=link_to"下書き一覧",confirm_posts_path %></div>
-        <div><%= link_to "チャット",  rooms_path %></div>
+        <div class="w-75 mb-3 ml-5"> 
+        <table class="table table-borderless">
+            <tr>
+                <td>お気に入り投稿</td>
+                <td><%=link_to"一覧へ",user_favorites_path(@user), class: 'btn btn-primary' %></td>
+            </tr>
+            <% if @user.id == current_user.id %>
+            <tr>
+                <td>下書き</td>
+                <td><%=link_to"一覧へ",confirm_posts_path, class: 'btn btn-primary' %></td>
+            </tr>
+            <tr>
+                <td>チャットルーム</td>
+                <td><%= link_to "一覧へ",  rooms_path, class: 'btn btn-primary' %></td>
+            </tr>
+            <% end %>
+        </table>
+        </div>
     </div>
   </div>
 </div>        

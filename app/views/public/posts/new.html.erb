@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row no-gutters">
-    <div class=' col-md-12 offset-md-1'>
-      <h2 class= 'text-dark p-4 mb-0'>新規投稿</h2>
+    <div class="col-md-12 offset-md-1">
+      <h2 class= "text-dark p-4 mb-0">新規投稿</h2>
 　　　<%= form_with model:@post,local:true do |f| %>
  　　　<%= render 'layouts/errors', obj: @post %>
       <table class="w-75 table table-borderless">
@@ -29,7 +29,7 @@
             <td><%= f.text_field :name,value: @tag_list,class:"form-control"%></td>
           </tr>
             <tr>
-              <td><%= f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"),k]}, {}, {class: "custom-select w-25"} %>
+              <td><%= f.select :status, Post.statuses.keys.map { |k| [t("enums.post.status.#{k}"),k]}, {}, {class: "custom-select w-70"} %>
               <td><%= f.submit '投稿', class: "btn btn-success btn-lg " %></td>
             </tr>
           <% end %>
