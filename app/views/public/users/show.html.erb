@@ -51,8 +51,10 @@
                 <td><%=link_to"一覧へ",confirm_posts_path, class: 'btn btn-primary' %></td>
             </tr>
             <tr>
+                <% if @user.name != "guestuser" %>
                 <td>チャットルーム</td>
                 <td><%= link_to "一覧へ",  rooms_path, class: 'btn btn-primary' %></td>
+                <% end %>
             </tr>
             <% end %>
         </table>

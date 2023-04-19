@@ -18,7 +18,7 @@
       <div id=<%="favorite-box"+ @post.id.to_s %>>
         <%= render 'public/favorites/favorite', post: @post %>
       </div>
-      <p class="comments-counter">
+      <p id="comments-counter">
             <%= render "public/comments/counter", post: @post %>
       </p>
       <p class="post_tags">
@@ -37,7 +37,7 @@
   </div>
   <div class="row mt-4 d-block">
     <div class="w-75 mb-3 ml-5">
-      <div class="comments-index">
+      <div id="comments-index">
        <%= render "public/comments/index", post: @post %>
       </div>
     </div>

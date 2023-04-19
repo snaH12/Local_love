@@ -11,5 +11,4 @@
 <%= form_with model: message,url: room_messages_path(message.room) do |f| %>
     <%= f.text_field :message %>
     <%= f.hidden_field :room_id %>
-    <%= f.submit %>
 <% end %>

@@ -14,7 +14,7 @@ class Public::RoomsController < ApplicationController
   def join
     @room = Room.find(params[:room_id])
     @room.users << current_user
-    redirect_to  rooms_path
+    redirect_to  room_path(@room)
   end
 
   def new

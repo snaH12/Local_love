@@ -1,12 +1,18 @@
-<div class="col-">
-<%= form_with model: room, local: true do |f| %>
-  <div class="form-room">
-    <%= f.label :ルーム名 %>
-    <%= f.text_field :name, class: 'form-control' %>
+<div class="col-6 mx-auto">
+  <%= form_with model: room, local: true do |f| %>
+  <table class="table table-borderless">
+    <tr>
+      <td><%= f.label :ルーム名 %></td>
+      <td><%= f.text_field :name, class: 'form-control' %></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><%= f.submit class: 'btn btn-info' %></td>
+      
+    </tr>
+    </table>
+  <% end %>
+  <diV>
+        <%= link_to "戻る",rooms_path %>
   </div>
-
-  <div class="form-room">
-    <%= f.submit class: 'btn btn-info' %>
-  </div>
-<% end %>
 </div>

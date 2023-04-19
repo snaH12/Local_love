@@ -9,15 +9,15 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    #タグの配列を作成
-    tag_list = params[:post][:name].split(',')
+    
+    @tag_list = params[:post][:name]
     if @post.save
-      @post.save_tag(tag_list)
+      #タグの配列を作成
+      @tag_list = @tag_list.split(',')
+      @post.save_tag(@tag_list)
       redirect_to post_path(@post), notice: "投稿が完了しました。"
     else
-      @post = Post.new
-      @posts = Post.all
-      render :index
+      render :new
     end
   end
   

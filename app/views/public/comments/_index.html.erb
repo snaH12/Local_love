@@ -12,7 +12,7 @@
         <td><%= comment.comment %></td>
         <td>
           <% if comment.user == current_user %>
-            <%= link_to "　コメント削除", post_comment_path(post, comment), method: :delete, remote: true, class: "btn btn-danger pull-right" %>
+            <%= link_to "コメント削除", post_comment_path(post, comment), method: :delete, remote: true, class: "btn btn-danger pull-right" %>
           <% end %>
         </td>
       </tr>

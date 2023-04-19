@@ -7,11 +7,11 @@
           <td><%= @room.name %></td>
           <td>
             <% if @room.owner_id == current_user.id %>
-              <%= link_to 'Edit', edit_room_path(@room), class: "btn btn-sm btn-success" %>
+              <%= link_to '編集', edit_room_path(@room), class: "btn btn-sm btn-success" %>
               <% elsif @room.users.include?(current_user) %>
-                <%= link_to 'Leave this room', room_path(@room), method: :delete, class: "btn btn-sm btn-danger" %>
+                <%= link_to '退出する', room_path(@room), method: :delete, class: "btn btn-sm btn-danger" %>
               <% else %>
-                <%= link_to 'Join this room', room_join_path(@room), class: "btn btn-sm btn-success" %>
+                <%= link_to '参加する', room_join_path(@room), class: "btn btn-sm btn-success" %>
               <% end %>
           </td>
         </tr>
