@@ -1,10 +1,9 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
     <div class='col-md-8 offset-md-1'>
-      <h2>ルーム詳細</h2></h2>
-      <table class='table table-hover table-inverse'>
+      <table class='table table-inverse'>
         <tr>
-          <td><%= @room.name %></td>
+          <td style="font-size : 35px;"><%= @room.name %></td>
           <td>
             <% if @room.owner_id == current_user.id %>
               <%= link_to '編集', edit_room_path(@room), class: "btn btn-sm btn-success" %>
@@ -17,9 +16,14 @@
         </tr>
       </table>
       
-      <div>
+      <div class="my-3 h5">
         <%= render "public/messages/index", messages: @messages, message:@message %>
       </div>
+    </div>
+  </div>
+
+  <div class='row mt-5'>
+    <div class='col-md-8 offset-md-1'>
       <diV>
         <%= link_to "戻る",rooms_path %>
       </div>

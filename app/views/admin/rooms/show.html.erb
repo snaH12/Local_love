@@ -1,17 +1,31 @@
 <div class='container px-5 px-sm-0'>
   <div class='row'>
     <div class='col-md-8 offset-md-1'>
-      <h2>ルーム詳細</h2></h2>
-      <table class='table table-hover table-inverse'>
-        <tr>
-          <td><%= @room.name %></td>
-        </tr>
-      </table>
+      <h2><%= @room.name %>詳細</h2>
+    </div>
+  </div>
+  <div class='row mt-3'>
+    <div class='col-md-8 mx-auto'>
       <div class='message'>
-        <% @messages.each do |message| %>
-          <p><%= message.user.name %>:<%= message.message %></p>
-        <% end %>
-      </div>
+        
+        <table class='table table-hover table-borderless'>
+          <thead>
+          <tr>
+            <th>コメント主</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @messages.each do |message| %>
+          <tr>
+            <td><%= message.user.name %> </td>
+            <td><%= message.message %></td>
+            <td><%= link_to '削除'%></td>
+          </tr>
+          <% end %>
+          </tbody>
+        </table>
+        
       <diV>
         <%= link_to "戻る",admin_rooms_path %>
       </div>

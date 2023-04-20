@@ -22,24 +22,34 @@
       <p>コメント数: <%= @post.comments.count %></p>
       <p class="post_tags">
         <% @post_tags.each do |tag| %>
-          <i class="fas fa-regular fa-hashtag"></i><%= link_to tag.name,search_tag_path(tag_id: tag.id)%><%="(#{tag.posts.count})" %>
+          <i class="fas fa-regular fa-hashtag"></i><%= tag.name %>
         <% end %>
       </p>
-      <h1>コメント一覧</h1>
       <div>
-    　　<% @comments.each do |comment| %>
-        <div>
-            <p><%= comment.comment %></p>
-            <p><%= comment.user.name %></p>
-            <p><%= link_to "削除" , admin_comment_path(comment.id),method: :delete %></p>
-        </div>
-        <% end %>
-　　　　</div>
-      
-      
-       <div>
         <%= link_to '投稿を削除する', @post, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger "%>
       </div>
+      </div>
+     </div>
+     
+     <div class="row">
+      <h1>コメント一覧</h1>
+      
+      <diV class="w-75 mb-3 ml-5">
+        <table class="table table-borderless">
+          <tbody>
+              <% @post.comments.each do |comment| %>
+              <tr>
+                
+                <td>
+                    <%= comment.user.name %> : <%= comment.comment %></td>
+                <td>
+                    <%= link_to "コメント削除", admin_comment_path(comment.id), method: :delete, class: "btn btn-danger pull-right" %>
+                </td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+      </diV>
     </div>
   </div>
   

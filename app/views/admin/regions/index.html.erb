@@ -1,0 +1,41 @@
+<div class='container'>
+    <div class='row'>
+        <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+            <h2>地方一覧・追加</h2>
+            <table class="table table-borderless">
+                <tr>
+                    <%= form_with model:@region, url: admin_regions_path, method: :post do |f| %>
+                    <td><%= f.label :name,'地方名' %></br>
+                    <%= f.text_field :name, placeholder: '〜地方', class: 'form-control' %>
+                    </td>
+                    <tr>
+                        <td></td>
+                        <td><%= f.submit '追加', class: "btn btn-success btn-lg " %></td>
+                    </tr>
+                    <% end %>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class='row'>
+        <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+            <table class='table table-hover table-inverse'>
+              <thead>
+                <tr>
+                    <th>地方名</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @region.each do |region| %>
+                <tr>
+                    <td><%= region.name %></td>
+                    <td><%= link_to "編集する", edit_admin_region_path(region.id), class: "btn btn-sm btn-success" %></td>
+                    <td><%= link_to '削除する', admin_region_path(region.id), method: :delete,class: "btn btn-sm btn-danger" %></td>
+                </tr>
+                <% end %>
+            </tbody>
+            </table>
+        </div>
+    </div>
+</div>

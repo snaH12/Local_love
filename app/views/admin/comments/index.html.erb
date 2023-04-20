@@ -1,10 +1,15 @@
 <h1>コメント一覧</h1>
-<div>
-    <% @comments.each do |comment| %>
-    <div>
-        <p><%= comment.comment %></p>
-        <p><%= comment.user.name %></p>
-        <p><%= link_to "削除" , admin_comment_path(comment.id),method: :delete %></p>
-    </div>
-    <% end %>
-</div>
+<div class="w-75 mb-3 ml-5">
+    <table class="table table-borderless">
+        <tbody>
+            <% @comments.each do |comment| %>
+            <tr>
+                <td><%= comment.user.name %> : <%= comment.comment %></td>
+                <td>
+                    <%= link_to "削除" , admin_comment_path(comment.id),method: :delete %>
+                </td>
+              </tr>
+            <% end %>
+        </tbody>
+    </table>
+</diV>

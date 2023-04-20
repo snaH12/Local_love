@@ -1,46 +1,36 @@
-      <div id=<%="favorite-box"+ @post.id.to_s %>>
-        ♥<%= post.favorites.count %>
-      </div>
-      
-<% if post.favorited_by?(current_user) %>
-<%= link_to post_favorites_path(post), method: :delete, remote: true do %>
-♥<%= post.favorites.count %>
+ 
+<% @comments.each do |comment| %>
+<table>
+<tr>
+<td><%= comment.user.name %> : <%= comment.comment %></td>
+<td><%= link_to "削除" , admin_comment_path(comment.id),method: :delete %></td>
+</tr>
+</table>
 <% end %>
-<% else %>
-<%= link_to post_favorites_path(post), method: :post, remote: true do %>
-♡<%= post.favorites.count %>
-<% end %>
-<% end %>
-      
-      <p class="comments-counter">
-            <%= render "public/comments/counter", post: @post %>
-      </p>
-      コメント数: <%= post.comments.count %>
-      
-  <div class="row mt-4 d-block">
-    <div class="col-4">
-      <div class="comments-index">
-       <%= render "public/comments/index", post: @post %>
-      </div>
-    </div>
-    <div class="col-4 pt-4">
-      <div class="comments-form">
-        <%= render "public/comments/form", post: @post, comment: @comment %>
-      </div>
-    </div>
-  </div>
-  
-  <table>
+
+
+<table class="table table-borderless">
   <tbody>
       <% post.comments.each do |comment| %>
       <tr>
         
-        <td><%= comment.user.name %></td>
-        <td><%= comment.comment %></td>
         <td>
-            <%= link_to "　コメント削除", post_comment_path(post, comment), method: :delete, remote: true, class: "btn btn-danger pull-right" %>
+            <%= comment.user.name %> : <%= comment.comment %></td>
+        <td>
+            <%= link_to "コメント削除", post_comment_path(post, comment), method: :delete, remote: true, class: "btn btn-danger pull-right" %>
         </td>
       </tr>
       <% end %>
   </tbody>
 </table>
+
+
+class: "btn btn-danger pull-right"
+<%= render "admin/comments/index", comments: @comments %>
+
+
+    def destroy
+       @comment = Comment.find(params[:id])
+       @comment.destroy
+       redirect_to admin_comments_path
+    end

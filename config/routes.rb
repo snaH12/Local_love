@@ -43,6 +43,7 @@ Rails.application.routes.draw do
 }
 namespace :admin do
   resources :users, only: [:index, :show, :edit, :update]
+  resources :regions, only: [:index, :create, :edit, :update,:destroy]
   resources :posts, only: [:index, :show, :destroy]
   resources :comments, only:[:index,:destroy]
   resources :rooms, only:[:index,:show,:destroy]
