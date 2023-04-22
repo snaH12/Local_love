@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     
     resources :users, only: [ :show, :edit, :update] do
       get :favorites
+      get :my_post
     end
     resources :regions,only: [:show]
     get "search" => "searches#search"
@@ -31,7 +32,7 @@ Rails.application.routes.draw do
       resource :favorites, only: [:create, :destroy]
       resources :comments, only: [:create,:destroy]
       collection do
-       get 'confirm'
+       get :confirm
        end
     end
   end

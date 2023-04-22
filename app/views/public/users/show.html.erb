@@ -45,6 +45,10 @@
                 <td>お気に入り投稿</td>
                 <td><%=link_to"一覧へ",user_favorites_path(@user), class: 'btn btn-primary' %></td>
             </tr>
+            <tr>
+                <td><%= @user.name %>さん投稿</td>
+                <td><%=link_to"一覧へ",user_my_post_path(@user), class: 'btn btn-primary' %></td>
+            </tr>
             <% if @user.id == current_user.id %>
             <tr>
                 <td>下書き</td>

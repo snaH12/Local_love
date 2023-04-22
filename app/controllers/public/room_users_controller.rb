@@ -12,3 +12,4 @@ class Public::RoomUsersController < ApplicationController
     redirect_to request.referer
   end
 end
+  

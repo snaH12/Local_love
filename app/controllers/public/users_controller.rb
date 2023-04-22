@@ -8,10 +8,18 @@ class Public::UsersController < ApplicationController
   end
   
   def favorites
-    @user = User.find(current_user.id)
+    @user = User.find(params[:user_id])
     favorites= Favorite.where(user_id: @user.id).pluck(:post_id)
     @favorite_posts = Post.find(favorites)
   end
+  
+  def my_post
+    @user = User.find(params[:user_id])
+    @posts = @user.posts.where(status: :published).order(params[:sort]).page(params[:page]).per(12)
+    @posts = @posts.where('location LIKE ?', "%#{params[:search]}%") if params[:search].present?
+    @tag_list=Tag.all
+  end
+  
   
   def edit
     @user = User.find(current_user.id)
