@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     get 'users/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
     patch 'users/withdrawal' => 'users#withdrawal', as: 'withdrawal'
     
-    resources :users do
+    resources :users, only: [ :show, :edit, :update] do
       get :favorites
     end
     resources :regions,only: [:show]
@@ -47,6 +47,7 @@ namespace :admin do
   resources :posts, only: [:index, :show, :destroy]
   resources :comments, only:[:index,:destroy]
   resources :rooms, only:[:index,:show,:destroy]
+  resources :messages, only: [:destroy]
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

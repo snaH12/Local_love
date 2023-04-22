@@ -1,4 +1,4 @@
-<div class="row mt-3">
+<div class="row">
     <div class="tag_list">
     <% tag_list.each do |list|%>
      <% if list.posts.count != 0 %>
@@ -8,13 +8,15 @@
     <% end %>
     </div>
 </div>
-<div class="row mt-3">
+<div class="row">
         <% posts.each do |post|%>
-        <div class="col-3">
-            <%= link_to post_path(post.id) do %>
-                <%= image_tag post.get_image(100,100), class: "mb-2 d-block w-100", style: "background-size: cover; background-position: center;" %>
-                <p class="mb-2"><%= post.title%></p>
-            <% end %>
+        <div class="card col-2" style="margin:20px;">
+            <diV class="card-img-top" style="margin:5px">
+              <%= link_to post_path(post.id) do %>
+                <%= image_tag post.get_image(100,100), class: "w-100 mb-2", style: "background-size: cover; background-position: center;" %>
+                <p class="card-title"><%= post.title%></p>
+              <% end %>
+            </diV>
             <p class="mb-2"><%= post.region.name %></p>
             <div id=<%="favorite-box"+ post.id.to_s %>>
                 <p class="mb-2"><%= render 'public/favorites/favorite', post: post %></p>

@@ -1,0 +1,17 @@
+<h1>コメント一覧</h1>
+　　<diV class="w-75 mb-3 ml-5">
+    　　<table class="table table-borderless">
+          <tbody>
+              <% comments.each do |comment| %>
+              <tr>
+                
+                <td>
+                    <%= comment.user.name %> : <%= comment.comment %></td>
+                <td>
+                    <%= link_to "コメント削除", admin_comment_path(comment.id), method: :delete, class: "btn btn-danger pull-right" %>
+                </td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+     </diV>

@@ -1,2 +1,0 @@
-
-<%= link_to '削除する',room_path(room), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger "%>

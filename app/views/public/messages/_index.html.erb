@@ -1,16 +1,24 @@
-<div class='message'>
-    <% messages.each do |message| %>
-     <% if message.user_id == current_user.id %>
-      <p style="text-align: right;"><%= message.message %></p>
-     <% else %>
-      <p style="text-align: left;"><%= message.user.name %>:<%= message.message %></p>
-     <% end %>
-    <% end %>
+<div class="row">
+    <div class='message'>
+        <% messages.each do |message| %>
+         <% if message.user_id != current_user.id %>
+         <div class='col-md-5'>
+          <p style="text-align: left;"><%= message.user.name %></br><%= message.message %></p>
+         </div>
+         <% else %>
+         <div class='col-md-11' style='padding-left:50%;'>
+          <p style="text-align: left;"><%= message.message %></p>
+         </div>
+         <% end %>
+        <% end %>
+    </div>
 </div>
-<diV class='m-5'>
-<%= form_with model: message,url: room_messages_path(message.room) do |f| %>
-    <%= f.text_area :message,rows:'5', class: "form-control text-wrap" %>
-    <%= f.submit "送信", class: "btn btn-primary" %>
-    <%= f.hidden_field :room_id %>
-<% end %>
+<div class="row">
+    <diV class='col m-5'>
+    <%= form_with model: message,url: room_messages_path(message.room) do |f| %>
+        <%= f.text_area :message,rows:'5', class: "form-control text-wrap　w-75" %>
+        <%= f.submit "送信", class: "btn btn-primary mt-3" %>
+        <%= f.hidden_field :room_id %>
+    <% end %>
+    </diV>
 </diV>

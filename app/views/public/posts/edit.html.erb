@@ -25,6 +25,10 @@
             </td>
           </tr>
           <tr>
+            <td><%= f.label :prefecture,'県', class: "col-form-label" %></td>
+            <td><%= f.text_field :prefecture,placeholder: '○○県', class: "form-control post_prefecture" %></td>
+          </tr>
+          <tr>
             <td><%= f.label :body, '本文', class: "col-form-label" %></td>
             <td><%= f.text_area :body,  class: "form-control" %></td>
           </tr>
