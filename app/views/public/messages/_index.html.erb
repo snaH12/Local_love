@@ -13,6 +13,7 @@
         <% end %>
     </div>
 </div>
+<% if  @room.users.include?(current_user) %>
 <div class="row">
     <diV class='col m-5'>
     <%= form_with model: message,url: room_messages_path(message.room) do |f| %>
@@ -22,3 +23,4 @@
     <% end %>
     </diV>
 </diV>
+<% end %>

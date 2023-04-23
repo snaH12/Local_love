@@ -1,29 +1,28 @@
-<div class="row">
-    <div class="tag_list">
+<div class="tag_list">
     <% tag_list.each do |list|%>
      <% if list.posts.count != 0 %>
       <%=link_to list.name,search_tag_path(tag_id: list.id) %>
       <%="(#{list.posts.count})" %>
       <% end %>
     <% end %>
-    </div>
 </div>
-<div class="row">
-        <% posts.each do |post|%>
-        <div class="card col-2" style="margin:20px;">
-            <diV class="card-img-top" style="margin:5px">
+<div class="d-flex">
+    <% posts.each do |post|%>
+      <div class="card col-2" style="margin:20px;">
+          <diV class="card-img-top" style="margin:5px">
               <%= link_to post_path(post.id) do %>
                 <%= image_tag post.get_image(100,100), class: "w-100 mb-2", style: "background-size: cover; background-position: center;" %>
                 <p class="card-title"><%= post.title%></p>
               <% end %>
-            </diV>
-            <p class="mb-2"><%= post.region.name %></p>
-            <div id=<%="favorite-box"+ post.id.to_s %>>
-                <p class="mb-2"><%= render 'public/favorites/favorite', post: post %></p>
+           </diV>
+           <p class="mb-2"><%= post.region.name %></p>
+           <div id=<%="favorite-box"+ post.id.to_s %>>
+               <p class="mb-2"><%= render 'public/favorites/favorite', post: post %></p>
             </div>
             <p class="mb-2"><i class="fas fa-regular fa-hashtag"></i><%= post.tags.map(&:name).join(', ') %></i></p>
-        </div>
-        <% end %>
-        <%= paginate posts %>
-    </div>
+      </div>
+     <% end %>
+</div>
+<div>
+    <%= paginate posts %>
 </div>

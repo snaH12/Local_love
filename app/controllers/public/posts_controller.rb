@@ -22,7 +22,7 @@ class Public::PostsController < ApplicationController
   end
   
   def index
-    @posts = Post.where(status: :published).order(params[:sort]).page(params[:page]).per(12)
+    @posts = Post.where(status: :published).order(params[:sort]).page(params[:page])
     @posts = @posts.where('location LIKE ?', "%#{params[:search]}%") if params[:search].present?
     @regions = Region.all
     @tag_list=Tag.all

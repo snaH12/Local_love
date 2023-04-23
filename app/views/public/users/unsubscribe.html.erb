@@ -8,7 +8,7 @@
             退会する場合は、「退会する」をクリックしてください。
         </p>
         
-        <%= link_to "退会しない", posts_path %>
+        <%= link_to "退会しない", :back %>
         <%= link_to "退会する", withdrawal_path, method: :patch, data: { confilm: "本当に退会しますか？" } %>
     </div>
   </div>

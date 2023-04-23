@@ -1,18 +1,19 @@
 <div class='container'>
     <div class='row'>
-        <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-            <h2>編集</h2>
+        <div class="col-8 mx-auto">
+            <h2>編集画面</h2>
             
             <table class="table table-borderless">
                 <tr>
                    <%= form_with model: @region, url: admin_region_path(@region) do |f| %>
                     <td><%= f.label :name,'地方名' %></br>
-                    <%= f.text_field :name, class:'form-control' %>
+                      <%= f.text_field :name, class:'form-control' %>
                     </td>
-                    <tr>
-                        <td></td>
-                        <td><%= f.submit class:'btn btn-success' %></td>
-                    </tr>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td><%= f.submit class:'btn btn-success' %></td>
+                </tr>
                     <% end %>
                 </tr>
             </table>

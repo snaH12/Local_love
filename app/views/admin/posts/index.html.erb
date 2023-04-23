@@ -1,20 +1,23 @@
-<div class='container-fluid'>
+<div class='container'>
  <div class='row'>
-  <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+  <div class="col mx-auto">
   <h2>投稿一覧（全<%= @posts.count %>件）</h2>
   </div>
  </div>
 
   <div class="row">
   <% @posts.each do |post|%>
-   <div class="col card" style="margin:10px">
+   <div class="card col-2" style="margin:10px">
+     <diV class="card-img-top" style="margin:5px">
         <%= link_to admin_post_path(post.id) do %>
           <%= image_tag post.get_image(100,100), class: "mb-2 d-block w-100", style: "background-size: cover; background-position: center;" %>
           <p class="mb-2"><%= post.title%></p>
         <% end %>
+     </diV>
     </div>
    <% end %>
+   </div>
+   <div class="row">
    <%= paginate @posts %>
- 
- </div>
+   </div>
 </div>
