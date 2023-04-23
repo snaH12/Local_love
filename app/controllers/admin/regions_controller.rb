@@ -22,7 +22,7 @@ class Admin::RegionsController < ApplicationController
   def update
     @region = Region.find(params[:id])
     if @region.update(region_params)
-      flash[:notice] ="地方名を更新しました。"
+      flash[:notice] ="更新しました。"
       redirect_to admin_regions_path(@region.id)
     else
       @region = Region.all

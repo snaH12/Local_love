@@ -5,6 +5,9 @@
             <table class="table table-borderless">
                 <tr>
                     <%= form_with model:@region, url: admin_regions_path, method: :post do |f| %>
+                    <td><%= f.label :image, '画像', class: "col-form-label" %></br>
+                    <%= f.file_field :image, accept: 'image/*', class: "form-control-file" %></td>
+                    
                     <td><%= f.label :name,'地方名' %></br>
                     <%= f.text_field :name, placeholder: '〜地方', class: 'form-control' %>
                     </td>

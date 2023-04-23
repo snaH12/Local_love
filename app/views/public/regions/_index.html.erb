@@ -1,4 +1,8 @@
 <h2>地方一覧</h2>
-<% regions.each do |region|%>
-     <%= link_to region.name, region_path(region),class:"text-dark" %>
-<% end %>
+<div class="m-auto p-3 d-flex flex-wrap">
+    <% regions.each do |region|%>
+        <%= link_to  region_path(region), class: 'text-decoration-none' do %>
+    　　　<%= image_tag region.get_image(240,100) %>
+    　　<% end %>
+    <% end %>
+</div>
