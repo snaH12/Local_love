@@ -11,9 +11,3 @@ Admin.create(
   password: 'adminpass',
   )
 
-Region.create(
-  [{ name: '北海道' },
-  { name: '東北' },
-  { name: '関東' },
-  { name: '中部' }
-  ])

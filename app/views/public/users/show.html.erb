@@ -6,7 +6,7 @@
             <div>
               <%= image_tag @user.get_profile_image(100,100) %>
             </div>
-            <div class="w-75 mb-3 ml-5">    
+            <div class="w-100 mb-3 ml-5">    
             <table class="table table-bordered">
                 <tr>
                     <td class="table-active">名前</td>
@@ -20,9 +20,9 @@
                         <%= @user.birthplace %>
                     </td>
                 </tr>
-                <tr style="text-align: left;">
-                    <td class="table-active text-wrap">紹介文</td>
-                    <td>
+                <tr>
+                    <td class="table-active">紹介文</td>
+                    <td style="text-align: left;">
                          <%= @user.introduction %>
                     </td>
                 </tr>

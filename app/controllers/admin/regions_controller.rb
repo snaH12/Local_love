@@ -1,7 +1,8 @@
 class Admin::RegionsController < ApplicationController
   
   def index
-    @region = Region.all
+    @region = Region.new
+    @regions = Region.all
   end
 
   def create

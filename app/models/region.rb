@@ -3,6 +3,7 @@ class Region < ApplicationRecord
   
   has_many :posts, dependent: :destroy
   validates :name, presence:true
+  validates :image, presence:true
   
   def get_image(width, height)
     image.variant(resize_to_limit: [width, height]).processed

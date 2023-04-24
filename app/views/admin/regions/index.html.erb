@@ -30,7 +30,7 @@
                 </tr>
             </thead>
             <tbody>
-                <% @region.each do |region| %>
+                <% @regions.each do |region| %>
                 <tr>
                     <td><%= region.name %></td>
                     <td><%= link_to "編集する", edit_admin_region_path(region.id), class: "btn btn-sm btn-success" %></td>

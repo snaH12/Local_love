@@ -13,7 +13,7 @@ class Public::PostsController < ApplicationController
     @tag_list = params[:post][:name]
     if @post.save
       #タグの配列を作成
-      @tag_list = @tag_list.split(',')
+      @tag_list = @tag_list.gsub(/[[:space:]]/, '').split(",").uniq
       @post.save_tag(@tag_list)
       redirect_to post_path(@post), notice: "投稿が完了しました。"
     else
@@ -45,18 +45,10 @@ class Public::PostsController < ApplicationController
   
   def update
     @post = Post.find(params[:id])
-    tag_list=params[:post][:name].split(',')
+    tag_list=params[:post][:name].gsub(/[[:space:]]/, '').split(",").uniq
     if @post.update(post_params)
-      if params[:post][:status]== "published"
-        @old_relations=PostTag.where(post_id: @post.id)
-        @old_relations.each do |relation|
-        relation.delete
-        end  
-        @post.save_tag(tag_list)
-       redirect_to post_path(@post), notice: "変更を保存しました。"
-      else 
-        redirect_to posts_path
-      end
+      @post.save_tag(tag_list)
+      redirect_to post_path(@post), notice: "変更を保存しました。"
     else
      render :edit
     end 
@@ -65,6 +57,8 @@ class Public::PostsController < ApplicationController
   
   def destroy
     @post = Post.find(params[:id])
+    tag_list = []
+    @post.save_tag(tag_list)
     @post.destroy
     flash[:notice] = "投稿を削除しました。"
     redirect_to posts_path

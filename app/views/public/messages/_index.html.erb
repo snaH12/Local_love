@@ -17,7 +17,7 @@
 <div class="row">
     <diV class='col m-5'>
     <%= form_with model: message,url: room_messages_path(message.room) do |f| %>
-        <%= f.text_area :message,rows:'5', class: "form-control text-wrap　w-75" %>
+        <%= f.text_area :message,rows:'5',placeholder: '150文字以内', class: "form-control text-wrap　w-75" %>
         <%= f.submit "送信", class: "btn btn-primary mt-3" %>
         <%= f.hidden_field :room_id %>
     <% end %>

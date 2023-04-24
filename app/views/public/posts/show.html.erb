@@ -23,7 +23,7 @@
       </p>
       <p class="post_tags">
         <% @post_tags.each do |tag| %>
-          <i class="fas fa-regular fa-hashtag"></i><%= link_to tag.name,search_tag_path(tag_id: tag.id)%><%="(#{tag.posts.count})" %>
+          <i class="fas fa-regular fa-hashtag"></i><%= link_to tag.name,search_tag_path(tag_id: tag.id)%><%="(#{tag.post_tags_count})" %>
         <% end %>
       </p>
       
