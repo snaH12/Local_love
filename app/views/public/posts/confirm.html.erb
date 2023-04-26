@@ -4,11 +4,13 @@
       <h2 class="font-weight-normal mt-3">下書き一覧</h2>
     </div>
     <div class="row mt-5">
-      <% if @posts.count != 0 %>
-       <%= render 'index', posts: @posts,tag_list: @tag_list %>
-      <% else %>
-      <h2 class="mx-auto">下書きはありません。</h2>
-      <% end %>
+      <div class="col m-10">
+        <% if @posts.count != 0 %>
+         <%= render 'index', posts: @posts,tag_list: @tag_list %>
+        <% else %>
+        <h2 class="mx-auto">下書きはありません。</h2>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

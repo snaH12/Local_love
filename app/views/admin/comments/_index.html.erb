@@ -5,8 +5,10 @@
               <% comments.each do |comment| %>
               <tr>
                 
-                <td>
-                    <%= comment.user.name %> : <%= comment.comment %></td>
+                <td><%= link_to admin_user_path(comment.user.id),class: 'text-primary' do %>
+                     <%= comment.user.name %> 
+                    <% end %>
+                    : <%= comment.comment %></td>
                 <td>
                     <%= link_to "コメント削除", admin_comment_path(comment.id), method: :delete, class: "btn btn-danger pull-right" %>
                 </td>

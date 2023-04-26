@@ -1,6 +1,6 @@
 <div class="tag_list">
     <% tag_list.each do |list|%>
-      <%=link_to list.name,search_tag_path(tag_id: list.id) %>
+      <%=link_to list.name,search_tag_path(tag_id: list.id),class: 'text-decoration-none' %>
       <%="(#{list.post_tags_count})" %>
     <% end %>
 </div>
@@ -8,7 +8,7 @@
     <% posts.each do |post|%>
       <div class="card col-2" style="margin:20px;">
           <diV class="card-img-top" style="margin:5px">
-              <%= link_to post_path(post.id) do %>
+              <%= link_to post_path(post.id),class: 'text-decoration-none' do %>
                 <%= image_tag post.get_image(100,100), class: "w-100 mb-2", style: "background-size: cover; background-position: center;" %>
                 <p class="card-title"><%= post.title%></p>
               <% end %>

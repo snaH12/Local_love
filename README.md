@@ -50,9 +50,10 @@ OS：Linux(CentOS)
 JSライブラリ：jQuery
  IDE：Cloud9
 
-## 
+## 画像提供
 
-画像提供：https://pro-foto.jp/
+：https://pro-foto.jp/
+：https://pixabay.com/ja/photos/
 
 - 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
 - 使用しない場合は、使用素材の項目をREADMEから削除してください。
